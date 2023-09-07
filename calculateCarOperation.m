@@ -26,10 +26,9 @@ carOperationIncome      = incomeFinal*(1 - damageSmallPropability*damageSmallSea
 carOperationTax         = carOperationIncome * taxRental;
 
 % Car operation costs calculation
-costInsuranceYear       = costInsurance*operationDays;
 costCleaningYear        = costCleaning*operationDays;
-carOperationCost        = costInsuranceYear + costCleaningYear + costMaintenance;
-carOperationTaxReturn   = costInsuranceYear*taxInsurance + costCleaningYear*taxCleaning + costMaintenance*taxMaintenance;
+carOperationCost        = costInsurance + costCleaningYear + costMaintenance;
+carOperationTaxReturn   = costInsurance*taxInsurance + costCleaningYear*taxCleaning + costMaintenance*taxMaintenance;
 
 % Assign data to car operation structure
 CarOperation.Income     = carOperationIncome;

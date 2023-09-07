@@ -153,9 +153,9 @@ incomeDegradationCoeficientDemand   = interp1(degradationDemandIncome, degradati
 
 % Calculate cost of insurance
 if strcmp(carModel,"EUp")
-    costInsurance        = 5; % [euro / rental day] 
+    costInsurance        = 500; % [euro] 
 elseif strcmp(carModel,"ID3")
-    costInsurance        = 7; % [euro / rental day] 
+    costInsurance        = 500; % [euro] 
 end
 
 % Calculate cost of cleaning
@@ -167,16 +167,23 @@ end
 
 % Calculate cost of maintenance
 if strcmp(carModel,"EUp")
-    costMaintenanceAge      	= [0,       1,      2,      3,          4,          5,          6,      7,              8];
-    costMaintenanceData        	= [20,   	20,     20,     20,         20+600,     20+120,   	20,     20 + 1200       20+600]; % [euro]
+    % KTEO _____ Tire Repair _____ Inspection Service _____ CV Joints _____ Battery element
+    costMaintenanceFrequency  	= [1,       2,      2,      4]; % [Age years]
+    costMaintenanceData        	= [200,   	280,    125,    45+100]; % [euro]
     
 elseif strcmp(carModel,"ID3")
-    costMaintenanceAge      	= [0,       1,      2,      3,          4,          5,          6,      7,              8];
-    costMaintenanceData        	= [20,   	40,     40,     40,         40+900,     40+120,   	40,     40 + 2000       40+900]; % [euro]
+    costMaintenanceFrequency    = [1,       2,       2,      3];
+    costMaintenanceData        	= [200,   	360,     180,    45+100]; % [euro]
 
 end
 
-costMaintenance   = interp1(costMaintenanceAge, costMaintenanceData, mod(carAge,length(costMaintenanceData)));
+numOfMaintenances = length(costMaintenanceFrequency);
+costMaintenance = 0;
+for iMaintenance = 1 : numOfMaintenances
+    if mod(carAge,costMaintenanceFrequency(iMaintenance)) == 0
+    costMaintenance = costMaintenance + costMaintenanceData(iMaintenance);
+    end
+end
 
 % Calculate damage cost
 if strcmp(carModel,"EUp")
