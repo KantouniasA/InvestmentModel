@@ -30,8 +30,12 @@ costCleaningYear        = costCleaning*operationDays;
 carOperationCost        = costInsurance + costCleaningYear + costMaintenance;
 carOperationTaxReturn   = costInsurance*taxInsurance + costCleaningYear*taxCleaning + costMaintenance*taxMaintenance;
 
+% Calculate the cash from one year of operation of the car
+cash                    = carOperationIncome - carOperationTax - carOperationCost + carOperationTaxReturn;
+
 % Assign data to car operation structure
 CarOperation.Income     = carOperationIncome;
 CarOperation.Tax        = carOperationTax;
 CarOperation.Cost       = carOperationCost;
 CarOperation.TaxReturn  = carOperationTaxReturn;
+CarOperation.cash       = cash;

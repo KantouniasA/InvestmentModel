@@ -1,8 +1,16 @@
 function CarRentalBusiness = GenerateCarRentalBusiness
 
+%% Current date
+currentDate         = 2023;
+age                 = 0;
+
 %% Car identities
 carIdentities = ["Car1";"Car2";"Car3"];
 
+%% Money cash
+cash                = 0;
+
+%% Cars
 % Car 1
 Car1 = struct;
 Car1.model          = "EUp";
@@ -30,16 +38,15 @@ Car3.dateRelease    = 2023;
 Car3.dateCurrent    = 2023;
 Car3.id             = "Car3";
 
-%% Money cash
-cash                = 0;
-
-%% Current date
-currentDate         = 2023;
+%% History structure
+History           = struct;
 
 %% Assign values car rental business
+CarRentalBusiness.currentDate       = currentDate;
+CarRentalBusiness.age               = age;
 CarRentalBusiness.carIdentities     = carIdentities;
 CarRentalBusiness.Car1              = Car1;
 CarRentalBusiness.Car2              = Car2;
 CarRentalBusiness.Car3              = Car3;
 CarRentalBusiness.cash              = cash;
-CarRentalBusiness.currentDate       = currentDate;
+CarRentalBusiness.History           = History;

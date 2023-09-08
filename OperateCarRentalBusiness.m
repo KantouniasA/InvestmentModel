@@ -1,4 +1,4 @@
-function [CarRentalBusinessNextYear, CarRentalBusinessOperationData] = OperateCarRentalBusiness(CarRentalBusiness)
+function CarRentalBusinessNextYear = OperateCarRentalBusiness(CarRentalBusiness)
 % This function estimates the state of the car business after of one year of operation
 CarRentalBusinessNextYear = struct;
 
@@ -6,16 +6,15 @@ CarRentalBusinessNextYear = struct;
 carIdentities   = CarRentalBusiness.carIdentities;
 cash            = CarRentalBusiness.cash;
 currentDate     = CarRentalBusiness.currentDate;
+age             = CarRentalBusiness.age;
 
-% Simple calculations
+%% Calculate car operation data
 numOfCars       = length(carIdentities);
-nextYearDate    = currentDate + 1;
-
-% Estimate the income, cost, tax, tax return and car state after one year of usage
+cashOperation   = 0;
 
 for iCar = 1 : numOfCars
     
-    %% Calculate car operation data
+    
     % Load the car
     Car     = CarRentalBusiness.(carIdentities(iCar));
     
@@ -26,18 +25,45 @@ for iCar = 1 : numOfCars
     CarOperation = calculateCarOperation(CarData);
     
     % Calculate business cash
-    cash = cash + CarOperation.Income - CarOperation.Tax - CarOperation.Cost + CarOperation.TaxReturn;
-    
-    % Assign data
-    Car.age                                             = Car.age + 1;
-    Car.dateCurrent                                     = nextYearDate;
-    CarRentalBusinessNextYear.(carIdentities(iCar))     = Car;
-    CarRentalBusinessOperationData.(strcat(carIdentities(iCar),"Data"))         = CarData;
-    CarRentalBusinessOperationData.(strcat(carIdentities(iCar),"Operation"))    = CarOperation;
+    cashOperation = CarOperation.cash + cashOperation;
     
 end
+cash = cash + cashOperation;
 
-%% Car rental business of the next year
-CarRentalBusinessNextYear.cash              = cash;
-CarRentalBusinessNextYear.currentDate       = nextYearDate;
+%% Assign data to car rental business of the next year
+
+% Car rental business of the next year
+CarRentalBusinessNextYear.currentDate       = currentDate + 1;
+CarRentalBusinessNextYear.age             	= age + 1;
 CarRentalBusinessNextYear.carIdentities     = carIdentities;
+for iCar = 1 : numOfCars
+    Car                                                                         = CarRentalBusiness.(carIdentities(iCar));
+    Car.age                                                                     = Car.age + 1;
+    Car.dateCurrent                                                             = currentDate + 1;
+    CarRentalBusinessNextYear.(Car.id)                                          = Car;
+end
+CarRentalBusinessNextYear.cash              = cash;
+
+% Car rental plan execution
+    
+    % Car rental business before plan execution
+PlanExecution.CarRentalBusiness.currentDate     = CarRentalBusiness.currentDate;
+PlanExecution.CarRentalBusiness.age             = CarRentalBusiness.age;
+PlanExecution.CarRentalBusiness.carIdentities   = CarRentalBusiness.carIdentities;
+for iCar = 1 : numOfCars
+    PlanExecution.CarRentalBusiness.(carIdentities(iCar)) = CarRentalBusiness.(carIdentities(iCar));
+end
+PlanExecution.CarRentalBusiness.cash            = CarRentalBusiness.cash;
+
+    % Plan execution information
+PlanExecution.type                                           	= "BusinessOperation";
+for iCar = 1 : numOfCars
+    PlanExecution.(strcat(carIdentities(iCar),"Data"))          = CarData;
+    PlanExecution.(strcat(carIdentities(iCar),"Operation"))     = CarOperation;
+end
+
+PlanExecution.cash                             = cashOperation;
+
+CarRentalBusinessNextYear.History                                            	= CarRentalBusiness.History;
+CarRentalBusinessNextYear.History(CarRentalBusinessNextYear.age).PlanExecution 	= PlanExecution;
+
