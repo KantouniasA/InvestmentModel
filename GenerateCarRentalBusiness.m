@@ -39,8 +39,8 @@ Car3.dateCurrent    = 2023;
 Car3.id             = "Car3";
 
 %% History structure
-History           = struct;
-
+History                     = struct;
+History(1).numOfPlansExecuted  = 0;
 %% Assign values car rental business
 CarRentalBusiness.currentDate       = currentDate;
 CarRentalBusiness.age               = age;

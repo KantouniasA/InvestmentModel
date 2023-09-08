@@ -64,6 +64,9 @@ end
 
 PlanExecution.cash                             = cashOperation;
 
+% Car rentla history
+numOfPlansExecutedNew                                                           = CarRentalBusiness.History(1).numOfPlansExecuted + 1;
 CarRentalBusinessNextYear.History                                            	= CarRentalBusiness.History;
-CarRentalBusinessNextYear.History(CarRentalBusinessNextYear.age).PlanExecution 	= PlanExecution;
+CarRentalBusinessNextYear.History(1).numOfPlansExecuted                         = numOfPlansExecutedNew;
+CarRentalBusinessNextYear.History(numOfPlansExecutedNew).PlanExecution          = PlanExecution;
 
