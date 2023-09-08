@@ -4,6 +4,7 @@ function SuperValues = calculateCarRentalBusinessSuperValue(CarRentalBusiness, n
 SuperValues = struct;
 totalSuperValue = 0;
 
+% Calculate operation supervalue of the business
 CarRentalBusinessSuperValue = CarRentalBusiness;
 CarRentalBusinessSuperValue.cash = 0;
 CarRentalBusinessSuperValue = rmfield(CarRentalBusinessSuperValue,"History");
@@ -15,6 +16,7 @@ for iYear = 1 : numOfOperationYears
 end
 totalSuperValue = totalSuperValue + CarRentalBusinessSuperValue.cash;
 
+% Calculate cars supervalue after business final operation
 carIdentities = CarRentalBusinessSuperValue.carIdentities;
 numOfCars = length(carIdentities);
 for iCar =  1 : numOfCars
@@ -25,4 +27,5 @@ for iCar =  1 : numOfCars
     
 end
 
+% Calculate total business supervalue
 SuperValues.totalSuperValue = totalSuperValue;

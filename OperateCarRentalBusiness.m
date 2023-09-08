@@ -14,7 +14,6 @@ cashOperation   = 0;
 
 for iCar = 1 : numOfCars
     
-    
     % Load the car
     Car     = CarRentalBusiness.(carIdentities(iCar));
     
@@ -58,6 +57,15 @@ PlanExecution.CarRentalBusiness.cash            = CarRentalBusiness.cash;
     % Plan execution information
 PlanExecution.type                                           	= "BusinessOperation";
 for iCar = 1 : numOfCars
+    % Load the car
+    Car     = CarRentalBusiness.(carIdentities(iCar));
+    
+    % Generate the data of the car
+    CarData = generateCarData(Car);
+    
+    % Calculate the operation data of the car
+    CarOperation = calculateCarOperation(CarData);
+    
     PlanExecution.(strcat(carIdentities(iCar),"Data"))          = CarData;
     PlanExecution.(strcat(carIdentities(iCar),"Operation"))     = CarOperation;
 end
