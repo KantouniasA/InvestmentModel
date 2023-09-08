@@ -231,3 +231,8 @@ CarData.taxInsurance                        = taxInsurance;
 CarData.taxMaintenance                  	= taxMaintenance;
 CarData.taxCleaning                         = taxCleaning;
 
+CarData.carModel        = carModel;
+CarData.carType         = carType;
+CarData.carAge          = carAge;
+CarData.carDateRelease 	= carDateRelease;
+CarData.carDateCurrent  = carDateCurrent;

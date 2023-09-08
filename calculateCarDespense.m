@@ -9,7 +9,11 @@ valueDegradationCoeficientRelease   = CarData.valueDegradationCoeficientRelease;
 taxCarDespense                      = CarData.taxCarDespense;
 
 % Car dealing calculation
-valueFinal      = valueInitial * (1 - valueDegradationCoeficientAge - valueDegradationCoeficientRelease);
+if CarData.discountFactorEAstypalea == 0 && CarData.carAge >= 3
+    valueFinal      = valueInitial * (1 - valueDegradationCoeficientAge - valueDegradationCoeficientRelease);
+else
+    valueFinal = 0;
+end
 
 CarDespenseIncome     	= valueFinal;
 CarDespenseTax    = CarDespenseIncome * taxCarDespense;
