@@ -59,3 +59,4 @@ numOfPlansExecutedNew                                               = CarRentalB
 CarRentalBusinessNew.History                                        = CarRentalBusiness.History;
 CarRentalBusinessNew.History(1).numOfPlansExecuted                  = numOfPlansExecutedNew;
 CarRentalBusinessNew.History(numOfPlansExecutedNew).PlanExecution	= PlanExecution;
+CarRentalBusinessNew.HistoryAge                                  	= CarRentalBusiness.HistoryAge;

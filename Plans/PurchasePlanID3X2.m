@@ -15,7 +15,17 @@ Car4.dateRelease    = CarRentalBusiness.currentDate;
 Car4.dateCurrent    = CarRentalBusiness.currentDate;
 Car4.id             = "Car4";
 
+% Buy an ID3 (car5)
+Car5 = struct;
+Car5.model          = "ID3";
+Car5.type           = "eV";
+Car5.age            = 0;
+Car5.dateRelease    = CarRentalBusiness.currentDate;
+Car5.dateCurrent    = CarRentalBusiness.currentDate;
+Car5.id             = "Car5";
+
 CarRentalBusiness = purchaseCar(CarRentalBusiness,Car4);
+CarRentalBusiness = purchaseCar(CarRentalBusiness,Car5);
 
 % Operate the car rental business for one year
 numOfOperationYears = 4;

@@ -7,12 +7,19 @@ totalSuperValue = 0;
 % Calculate operation supervalue of the business
 CarRentalBusinessSuperValue = CarRentalBusiness;
 CarRentalBusinessSuperValue.cash = 0;
-CarRentalBusinessSuperValue = rmfield(CarRentalBusinessSuperValue,"History");
+CarRentalBusinessSuperValue.History = struct;
 CarRentalBusinessSuperValue.History.numOfPlansExecuted = 0;
-for iYear = 1 : numOfOperationYears
-    CarRentalBusinessSuperValue = OperateCarRentalBusiness(CarRentalBusinessSuperValue);
-    SuperValues.OperationSuperValue = CarRentalBusinessSuperValue.cash;
+CarRentalBusinessSuperValue.HistoryAge = struct;
 
+if numOfOperationYears == 0
+    
+else
+    for iYear = 1 : numOfOperationYears
+        CarRentalBusinessSuperValue = OperateCarRentalBusiness(CarRentalBusinessSuperValue);
+        SuperValues.OperationSuperValue = CarRentalBusinessSuperValue.cash;
+        
+    end
+    
 end
 totalSuperValue = totalSuperValue + CarRentalBusinessSuperValue.cash;
 

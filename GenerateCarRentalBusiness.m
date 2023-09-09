@@ -50,3 +50,9 @@ CarRentalBusiness.Car2              = Car2;
 CarRentalBusiness.Car3              = Car3;
 CarRentalBusiness.cash              = cash;
 CarRentalBusiness.History           = History;
+
+CarRentalBusinessHistoryAge                         = CarRentalBusiness;
+CarRentalBusinessHistoryAge                         = rmfield(CarRentalBusinessHistoryAge,"History");
+CarRentalBusiness.HistoryAge(1).CarRentalBusiness	= CarRentalBusinessHistoryAge;
+CarRentalBusiness.HistoryAge(1).CarRentalBusiness.cash	= 30000-(41500-30000);
+

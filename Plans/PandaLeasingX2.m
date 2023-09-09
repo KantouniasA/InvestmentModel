@@ -8,14 +8,24 @@ CarRentalBusiness = OperateCarRentalBusiness(CarRentalBusiness);
 
 % Buy an ID3 (car4)
 Car4 = struct;
-Car4.model          = "ID3";
-Car4.type           = "eV";
+Car4.model          = "PandaLeasing";
+Car4.type           = "conventional";
 Car4.age            = 0;
 Car4.dateRelease    = CarRentalBusiness.currentDate;
 Car4.dateCurrent    = CarRentalBusiness.currentDate;
 Car4.id             = "Car4";
 
+% Buy an ID3 (car5)
+Car5 = struct;
+Car5.model          = "PandaLeasing";
+Car5.type           = "conventional";
+Car5.age            = 0;
+Car5.dateRelease    = CarRentalBusiness.currentDate;
+Car5.dateCurrent    = CarRentalBusiness.currentDate;
+Car5.id             = "Car5";
+
 CarRentalBusiness = purchaseCar(CarRentalBusiness,Car4);
+CarRentalBusiness = purchaseCar(CarRentalBusiness,Car5);
 
 % Operate the car rental business for one year
 numOfOperationYears = 4;

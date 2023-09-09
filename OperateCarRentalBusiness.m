@@ -78,3 +78,10 @@ CarRentalBusinessNextYear.History                                            	= 
 CarRentalBusinessNextYear.History(1).numOfPlansExecuted                         = numOfPlansExecutedNew;
 CarRentalBusinessNextYear.History(numOfPlansExecutedNew).PlanExecution          = PlanExecution;
 
+% Car rental business history age
+CarRentalBusinessNextYear.HistoryAge                                           	= CarRentalBusiness.HistoryAge;
+CarRentalBusinessNextYearHistory                                                = CarRentalBusinessNextYear;
+CarRentalBusinessNextYearHistory                                                = rmfield(CarRentalBusinessNextYearHistory,"HistoryAge");
+CarRentalBusinessNextYearHistory                                                = rmfield(CarRentalBusinessNextYearHistory,"History");
+CarRentalBusinessNextYear.HistoryAge(CarRentalBusiness.age+2).CarRentalBusiness	= CarRentalBusinessNextYearHistory;        
+
